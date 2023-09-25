@@ -23,7 +23,7 @@ resource "aws_instance" "ansible_host2" {
   vpc_security_group_ids      = ["${aws_security_group.websecurity.id}"]
   key_name                    = "frankfurt"
   availability_zone           = "eu-central-1b"
-  user_data                   = file("user_data.sh")
+  user_data                   = file("user_data_1.sh")
 
   tags = {
     Name = "ansible_host2"
@@ -76,20 +76,7 @@ resource "aws_instance" "Web_DB" {
   }
 }
 
-resource "aws_instance" "Web_DB1" {
-  ami                    = "ami-04e601abe3e1a910f"
-  instance_type          = "t2.micro"
-  subnet_id              = aws_subnet.private_DB1.id
-  vpc_security_group_ids = ["${aws_security_group.mydbsecurity.id}"]
-  key_name               = "frankfurt"
-  availability_zone      = "eu-central-1b"
 
-
-
-  tags = {
-    Name = "Web_DB1"
-  }
-}
 
 # resource "null_resource" "run_playbook" {
 #   provisioner "local-exec" {
